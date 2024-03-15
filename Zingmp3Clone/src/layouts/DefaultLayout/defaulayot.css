@@ -1,0 +1,7 @@
+.isProgesbar{
+    height: calc(100vh - 90px);
+}
+.isRight{
+    width: calc(100vw - 240px - 403px) ;
+    margin-right: 5px;
+}

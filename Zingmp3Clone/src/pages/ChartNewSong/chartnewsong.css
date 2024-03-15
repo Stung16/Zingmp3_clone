@@ -1,0 +1,9 @@
+.title-newchart{
+    text-transform: capitalize;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: normal;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,106 @@
+.side-bar {
+  background-color: #221a2d;
+}
+.zm-navbar-item {
+  font-weight: 700;
+  color: #dadada;
+  border-left: 3px solid transparent;
+}
+.zm-navbar-item a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 12px 21px;
+}
+.zm-navbar-item:hover {
+  color: #fff;
+}
+
+.zm-navbar-item .shuffle-play-btn {
+  display: none;
+  height: 20px;
+  width: 20px;
+  margin: 0;
+  padding: 0 !important;
+  border-radius: 999px;
+  position: absolute;
+  right: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.zm-navbar-item:hover .shuffle-play-btn {
+  display: flex;
+}
+.sidebar-divide:after {
+  content: "";
+  border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  top: 0;
+}
+.zm-nav-scroll {
+  position: absolute;
+  inset: 0px;
+  overflow-x: hidden;
+  margin-right: 1px;
+  background-color: #221a2d;
+}
+
+.vip-banner-sidebar {
+  padding: 15px 8px;
+  border-radius: 8px;
+  margin: 0 20px;
+  text-align: center;
+  background-image: linear-gradient(117deg, #5a4be7, #c86dd7 102%);
+}
+.vip-banner-sidebar .text {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  border-color: #ffdb00;
+  line-height: 1.67;
+  color: #fff;
+}
+.zm-btn {
+  background-color: #ffdb00;
+  border-color: #ffdb00;
+  color: #32323d;
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 999px;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.zm-btn:hover {
+  background-color: #e5c500;
+}
+.zm-box-section {
+  height: calc(100vh - 90px);
+}
+.nav .current {
+  color: #fff;
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
+.heiht {
+  height: calc(100vh - 70px - 90px);
+  /* height: calc(100% - 70px - 1rem - 192px -90px) !important; */
+  /* overflow: hi; */
+}
+.height-detail {
+  height: calc(100% - 192px - 1rem);
+}
+.heiht-item {
+  height: calc(100% - 105px);
+}
+.heiht-item-detail {
+  height: calc(100vh - 70px - 192px);
+}

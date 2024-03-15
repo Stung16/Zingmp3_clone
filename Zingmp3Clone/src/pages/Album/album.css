@@ -1,0 +1,237 @@
+.title-album {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 0;
+  text-transform: none;
+  width: 100%;
+}
+.update,
+.artists,
+.like {
+  color: hsla(0, 0%, 100%, 0.5);
+  font-size: 12px;
+  line-height: 1.75;
+}
+.btn-action {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 9px 24px;
+  text-transform: uppercase;
+  background-color: #9b4de0;
+  border-color: #9b4de0;
+  color: #fff;
+  border-radius: 999px;
+}
+.header-songalbum {
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.05);
+  height: 46px;
+  align-items: center;
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.head-left {
+  width: 50%;
+  margin-right: 10px;
+}
+
+.head-center {
+  margin-left: -10px;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+  align-self: center;
+  width: 0;
+}
+.header-name {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.album {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: hsla(0, 0%, 100%, 0.5);
+  margin-left: 10px !important;
+}
+.head-right {
+  margin-left: 10px;
+}
+.head-left,
+.head-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.checkbox-w {
+  cursor: pointer;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.checkbox-w .checkbox {
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.checkbox-w .checkbox input {
+  border-color: hsla(0, 0%, 100%, 0.2);
+  border-radius: 3px;
+  margin: 0;
+  padding: 6px;
+  cursor: pointer;
+  position: relative;
+}
+.songsAlbum .select-item:hover{
+    background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+/*
+
+.media-item:not(:hover) {
+} */
+.media-item {
+  max-width: 100%;
+  flex-grow: 1;
+  border-radius: 4px;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.05);
+}
+.media {
+  align-items: center;
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.media-left-album {
+  margin-right: 10px;
+}
+.media-item .media-left-album {
+  display: flex;
+  width: 50%;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.song-prfix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-right: 10px;
+  color: hsla(0, 0%, 100%, 0.5);
+  font-weight: 700;
+}
+.song-thumb {
+  display: block;
+  margin-right: 10px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.album-playlist .song-thumb figure {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  width: 40px;
+  height: 40px;
+}
+.opcityyy {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+}
+
+.card-info {
+  overflow: hidden;
+}
+
+.media .card-inffor {
+  display: -moz-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+  align-self: center;
+  width: 0;
+  max-width: 20vw;
+  margin-right: auto;
+}
+.media-content .album-info {
+  color: hsla(0, 0%, 100%, 0.5);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.media-right {
+  margin-left: 10px;
+}
+
+.media-left-album,
+.media-right-album {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.media-right .duration {
+  font-size: 12px;
+  width: 46px;
+  color: hsla(0, 0%, 100%, 0.5);
+  flex-grow: 1;
+  align-items: center;
+  flex-basis: auto;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.media .media-left-album {
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+}
+.album-playlist-left{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+.playlist-songs-info{
+  margin-top: 16px;
+    color: hsla(0,0%,100%,0.5);
+    font-size: 13px;
+    line-height: 18px;
+}

@@ -1,0 +1,47 @@
+
+.zm-container {
+  flex-grow: 1;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+.title-playlist {
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 20px;
+}
+.showall {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.zm-carousel {
+  display: flex;
+  margin: 0 -15px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.text-title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* .zm-img:hover {
+      display: block;
+  
+  
+  } */
+
+/* .zm-box-music:hover .zm-img {
+    transform: scale(1.1, 1.1);
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 700ms;
+  } */

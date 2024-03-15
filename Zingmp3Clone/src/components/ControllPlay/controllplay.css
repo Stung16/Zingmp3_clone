@@ -1,0 +1,245 @@
+.zm-play-bar {
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* margin-top: ; */
+  width: 100%;
+  max-height: 70px;
+  z-index: 100;
+}
+.play-controls {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  bottom: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.play-controls_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  min-width: 768px;
+  padding: 0 20px;
+  background-color: #170f23;
+  border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+}
+.player-controls-left {
+  display: flex;
+  position: relative;
+  width: 30%;
+  z-index: 1;
+  align-items: center;
+  justify-content: flex-start;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.player-controls-left_inner {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.player-controls-left_inner .zm-media_control {
+  padding: 0;
+  transition: transform 0.5s;
+  cursor: inherit;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.zm-media_control .media-left {
+  margin-right: 10px;
+}
+
+.zm-media_control .media-left,
+.zm-media_control .media-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+
+
+.player-controls-left {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.name-song_now {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.name-song_now .name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.36;
+  text-overflow: clip;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.zm-media_control .media-right {
+  margin-left: 15px;
+}
+.name-singer_now {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+.player-controls-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 40vw;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.actions .btn-controls {
+  font-size: 14px;
+  border-radius: 999px;
+  line-height: normal;
+  padding: 3px;
+  margin: 0 7px;
+  display: inline-block;
+  font-weight: 400;
+  text-transform: none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border: none;
+}
+.zm-timer_control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px !important;
+  max-width: 40vw;
+}
+.zm-timer_control .time_left {
+  text-align: right;
+  margin-right: 10px;
+  opacity: 0.5;
+  min-width: 45px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+}
+.zm-timer_control .time_right {
+  margin-left: 10px;
+  min-width: 45px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.player-controls-right {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  gap: 25px;
+}
+
+.zm-list-music {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.zm-list-music::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: -15px;
+  width: 1px;
+  height: 48px;
+  background-color: #363636;
+  display: block;
+}
+.container_progress {
+  width: 100vw;
+  position: relative;
+  cursor: pointer;
+}
+
+.container_progress .propress-bar {
+  height: 4px;
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    #fff 0%,
+    #fff 0.694372578562204%,
+    hsla(0, 0%, 100%, 0.3) 0.694372578562204%,
+    hsla(0, 0%, 100%, 0.3) 100%
+  );
+}
+.container_progress:hover .propress-bar {
+  height: 8px;
+}
+.container_progress .propress-bar .propress {
+  position: absolute;
+  border-radius: 999px;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.container_progress .propress-bar .propress .propress_dot {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #eee;
+  translate: 50% -50%;
+}
+
+.btn-next {
+  font-size: 14px;
+  border-radius: 999px;
+  line-height: normal;
+  padding: 3px;
+  margin: 0 7px;
+  display: inline-block;
+  font-weight: 400;
+  text-transform: none;
+  text-align: center;
+  position: relative;
+  border: none;
+}
+.btn-next.disable {
+  pointer-events: none;
+}

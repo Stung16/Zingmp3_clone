@@ -1,0 +1,113 @@
+.nav-search {
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  margin: 0 -59px;
+  padding-left: 59px;
+  margin-bottom: 28px !important;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+.title_nav {
+  flex-shrink: 0;
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  padding-right: 20px;
+  border-right: 1px solid hsla(0, 0%, 100%, 0.1);
+  text-transform: none;
+  line-height: normal;
+  color: #fff;
+}
+.ul-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ul-nav .nav-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  position: relative;
+  color: #dadada;
+  line-height: normal;
+}
+.link-search {
+  text-transform: uppercase;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #dadada;
+}
+.link-search.active {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+}
+.link-search.active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 210%;
+  border-bottom: 2px solid #9b4de0;
+}
+.search-title {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.outstanding-item {
+  position: relative;
+  min-height: 1px;
+  padding-left: 14px;
+  padding-right: 14px;
+  float: left;
+  flex-shrink: 0;
+}
+.outstanding-item .media-left {
+  margin-right: 10px;
+}
+.outstanding-item .media-left,
+.outstanding-item .media-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.outstanding-item .media-right {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1 1;
+  margin-left: 6px;
+}
+.outstanding-item .media-right .artist {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0.0025em;
+  color: hsla(0, 0%, 100%, 0.5);
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+.outstanding-item .media-right .artist-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+  margin-bottom: 0;
+}
+.outstanding-item .media-right .subtitle {
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: hsla(0, 0%, 100%, 0.5);
+}
