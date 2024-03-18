@@ -96,7 +96,7 @@ const Chart_Top = ({ data }) => {
                         className="song-thumb"
                         onClick={() => {
                           dispatch(updateCurrentSong(item?.encodeId));
-                          dispatch(checkPlay(false));
+                          dispatch(checkPlay(true));
                         }}
                       >
                         <img src={item?.thumbnailM} alt="" />
