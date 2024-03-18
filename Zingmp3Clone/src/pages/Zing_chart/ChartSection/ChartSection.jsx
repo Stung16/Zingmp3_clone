@@ -6,7 +6,6 @@ import { options } from "../../../utils/fn";
 import ChartZm from "../../../components/ChartZm/ChartZm";
 
 const ChartSection = ({ dataTrendding }) => {
-  if (!dataTrendding) return null;
 
   const listTrendding = dataTrendding?.trendding_VN;
   //   const [data, setData] = useState(null);

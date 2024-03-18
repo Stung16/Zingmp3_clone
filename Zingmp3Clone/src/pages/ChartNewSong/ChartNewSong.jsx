@@ -8,7 +8,7 @@ import "./chartnewsong.css";
 import { getNewReleaseChart } from "../../services/music.services";
 
 const ChartNewSong = () => {
-  const [dataChart, setDataChart] = useState(null);
+  const [dataChart, setDataChart] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {

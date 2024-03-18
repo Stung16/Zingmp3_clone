@@ -14,7 +14,7 @@ const Album = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const isPlay = useSelector((state) => state.songValues.status);
-  const [playListData, setPlayListData] = useState(null);
+  const [playListData, setPlayListData] = useState({});
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const codeAlbum = localStorage.getItem("codeAlbum");
   useEffect(() => {

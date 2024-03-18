@@ -6,7 +6,7 @@ import { getTop100 } from "../../services/music.services";
 const { updateLoading } = songSlices.actions;
 
 const Top100 = () => {
-  const [dataChart, setDataChart] = useState(null);
+  const [dataChart, setDataChart] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {

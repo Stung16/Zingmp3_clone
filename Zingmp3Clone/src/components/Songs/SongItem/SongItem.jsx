@@ -5,7 +5,6 @@ import PlayMusic from "../../Helper/PlayMusic/PlayMusic";
 const { updateCurrentSong, checkPlay } = songSlices.actions;
 
 const SongItem = ({ item }) => {
-  if (!item) return null;
 
   const dispatch = useDispatch();
   const currentSongID = useSelector((state) => state.songValues.currentSongID);

@@ -7,7 +7,6 @@ const { updateCurrentSong, updateNext, checkPlay, updatePrev, pushHistory } =
   songSlices.actions;
 
 const SongMedia = ({ song }) => {
-  if (!song) return null;
 
   const dispatch = useDispatch();
   return (

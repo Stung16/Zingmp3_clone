@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { Card, Skeleton } from "@nextui-org/react";
 
 const SlideAlbum = ({ dataSlice }) => {
-  if (!dataSlice) return null;
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {

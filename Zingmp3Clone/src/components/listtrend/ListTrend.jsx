@@ -1,7 +1,6 @@
 import React,{Fragment} from "react";
 import SongItem from "../Songs/SongItem/SongItem";
 const ListTrend = ({trends}) => {
-  if (!trends) return null;
 
   return (
     <>

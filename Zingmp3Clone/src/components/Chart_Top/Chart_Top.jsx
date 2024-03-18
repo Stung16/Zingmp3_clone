@@ -10,7 +10,6 @@ import { GiMicrophone } from "react-icons/gi";
 import { MdOutlineMoreHoriz } from "react-icons/md";
 
 const Chart_Top = ({ data }) => {
-  if (!data) return null;
   const arrSuggest = data?.promotes;
   const [option, setOptions] = useState(false);
   let number;

@@ -69,7 +69,7 @@ const Zing_chart = () => {
     },
   ];
   const data = { labels, datasets };
-  const [dataChart, setDataChart] = useState(null);
+  const [dataChart, setDataChart] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       dispatch(updateLoading(true));

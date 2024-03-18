@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 const SearchAll = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
 
   const dataSearch = useSelector((state) => state.searchData.data);
   useEffect(() => {

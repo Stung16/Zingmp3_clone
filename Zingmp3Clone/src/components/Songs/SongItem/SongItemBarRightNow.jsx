@@ -7,7 +7,7 @@ import { customText } from "../../../utils/fn";
 const SongItemBarRightNow = () => {
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const isPlay = useSelector((state) => state.songValues.status);
-  const [songinfo, setSonginfo] = useState(null);
+  const [songinfo, setSonginfo] = useState({});
 
   useEffect(() => {
     try {

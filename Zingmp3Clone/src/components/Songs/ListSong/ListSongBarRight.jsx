@@ -9,7 +9,7 @@ const { checkPlay, getListSong, updateLoading } = songSlices.actions;
 const ListSongBarRight = () => {
   const codeAlbum = localStorage?.getItem("codeAlbum")
   const dispatch = useDispatch();
-  const [playListData, setPlayListData] = useState(null);
+  const [playListData, setPlayListData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {

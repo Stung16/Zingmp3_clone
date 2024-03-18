@@ -3,8 +3,6 @@ import "../ListSection/listSection.css";
 import Album from "../Album/Album";
 
 const ListTop100 = ({ playList }) => {
-  if (!playList) return null;
-
   let listMusic;
   if (playList) {
     if (playList?.title === "Nổi bật") {

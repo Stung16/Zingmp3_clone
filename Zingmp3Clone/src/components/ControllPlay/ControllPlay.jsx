@@ -40,7 +40,7 @@ const ControllPlay = () => {
   const [loading, setLoading] = useState(false);
 
   // const audioEl = useRef(new Audio());
-  const [songinfo, setSonginfo] = useState(null);
+  const [songinfo, setSonginfo] = useState({});
   const [volume, setVolume] = useState(100);
 
   const alertWarring = () => {

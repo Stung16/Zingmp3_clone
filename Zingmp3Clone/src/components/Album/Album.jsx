@@ -8,7 +8,6 @@ const { updateCurrentSong, updateNext, updatePrev, updateIsVip, checkPlay } =
   songSlices.actions;
 
 const Album = ({ item }) => {
-  if (!item) return null;
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
