@@ -4,13 +4,13 @@ import { songSlices } from "../../stores/slices/songSlices";
 const { updateListTrend } = songSlices.actions;
 import { useDispatch } from "react-redux";
 import ListTrend from "../listtrend/ListTrend";
+import SkeletonTRending from "../Loading/SkeletonLoading/SkeletonTRending";
 
 const Trendding = ({ dataTrendding }) => {
-  const dispatch = useDispatch();
-  const [trend, setTrend] = useState("all");
-  useEffect(()=>{
-    dispatch(updateListTrend(dataTrendding?.items?.all?.slice(0, 12)))
-  },[dataTrendding])
+  if (!dataTrendding) return null;
+
+  const [option, setOPtion] = useState("all");
+  const dataTrends = dataTrendding?.items[option].slice(0, 12);
   return (
     <div className="zm-section">
       <h3 className="title-playlist">{dataTrendding?.title}</h3>
@@ -18,39 +18,30 @@ const Trendding = ({ dataTrendding }) => {
         <div className="flex">
           <button
             className={`hover:text-[#eee] zm-bt ${
-              trend === "all" ? "active" : ""
+              option === "all" ? "active" : ""
             } `}
             onClick={() => {
-              dispatch(
-                updateListTrend(dataTrendding?.items?.all?.slice(0, 12))
-              );
-              setTrend("all");
+              setOPtion("all");
             }}
           >
             Tất cả
           </button>
           <button
             className={`hover:text-[#eee] zm-bt ${
-              trend === "vPop" ? "active" : ""
+              option === "vPop" ? "active" : ""
             } `}
             onClick={() => {
-              dispatch(
-                updateListTrend(dataTrendding?.items?.vPop?.slice(0, 12))
-              );
-              setTrend("vPop");
+              setOPtion("vPop");
             }}
           >
             Việt Nam
           </button>
           <button
-             className={`hover:text-[#eee] zm-bt ${
-              trend === "others" ? "active" : ""
+            className={`hover:text-[#eee] zm-bt ${
+              option === "others" ? "active" : ""
             } `}
             onClick={() => {
-              dispatch(
-                updateListTrend(dataTrendding?.items?.others?.slice(0, 12))
-              );
-              setTrend("others");
+              setOPtion("others");
             }}
           >
             Quốc tế
@@ -63,8 +54,9 @@ const Trendding = ({ dataTrendding }) => {
       </div>
       <div className="zm-list-trendding">
         <div id="list" className="zm-trendding-inner flex flex-wrap">
-          <ListTrend />
+          <ListTrend trends={dataTrends} />
         </div>
+        {!dataTrendding && <SkeletonTRending />}
       </div>
     </div>
   );

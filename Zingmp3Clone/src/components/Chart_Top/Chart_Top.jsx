@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./chart_top.css";
 import { getTime } from "../../utils/fn";
 import { songSlices } from "../../stores/slices/songSlices";
 import { useDispatch } from "react-redux";
 const { updateCurrentSong, checkPlay } = songSlices.actions;
+import { FaPlay } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa";
+import { GiMicrophone } from "react-icons/gi";
+import { MdOutlineMoreHoriz } from "react-icons/md";
 
 const Chart_Top = ({ data }) => {
-    console.log(data);
+  if (!data) return null;
   const arrSuggest = data?.promotes;
-  const top10 = data?.items?.slice(0, 10);
+  const [option, setOptions] = useState(false);
+  let number;
+  if (option === true) {
+    number = 100;
+  } else {
+    number = 10;
+  }
+  const top10 = data?.items?.slice(0, number);
   const lengthArr = arrSuggest?.length;
   const randomIndex = Math.floor(Math.random() * lengthArr);
   const dispatch = useDispatch();
-  const handleSubmit = () => {
-    dispatch(updateCurrentSong(item?.encodeId));
-    dispatch(checkPlay(true));
-  };
   return (
     <div>
       <div className="suggest group">
@@ -29,7 +36,7 @@ const Chart_Top = ({ data }) => {
                 <img src={arrSuggest?.[randomIndex]?.thumbnailM} alt="" />
                 <div className="hidden overlayy group-hover:block">
                   <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:block">
-                    <i className="text-white fa-solid fa-play fa-lg"></i>
+                    <FaPlay className="text-white text-[20px]" />
                   </span>
                 </div>
               </div>
@@ -52,13 +59,13 @@ const Chart_Top = ({ data }) => {
             <div className="media-rightt">
               <div className="gap-8 mr-4 hidden group-hover:flex">
                 <span>
-                  <i className="text-white fa-solid fa-microphone cursor-pointer"></i>
+                  <GiMicrophone className="text-white text-[18px] cursor-pointer" />
                 </span>
                 <span>
-                  <i className="text-white fa-regular fa-heart cursor-pointer"></i>
+                  <FaRegHeart className="text-white text-[18px] cursor-pointer" />
                 </span>
                 <span>
-                  <i className="text-white fa-solid fa-ellipsis cursor-pointer"></i>
+                  <MdOutlineMoreHoriz className="text-white text-[19px] cursor-pointer" />
                 </span>
               </div>
               <span className="group-hover:hidden">
@@ -89,13 +96,13 @@ const Chart_Top = ({ data }) => {
                         className="song-thumb"
                         onClick={() => {
                           dispatch(updateCurrentSong(item?.encodeId));
-                          dispatch(checkPlay(true));
+                          dispatch(checkPlay(false));
                         }}
                       >
                         <img src={item?.thumbnailM} alt="" />
                         <div className="hidden overlayy group-hover:block">
                           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:block">
-                            <i className="text-white fa-solid fa-play fa-lg"></i>
+                            <FaPlay className="text-white text-[18px]" />
                           </span>
                         </div>
                       </div>
@@ -118,13 +125,13 @@ const Chart_Top = ({ data }) => {
                     <div className="media-rightt">
                       <div className="gap-8 mr-4 hidden group-hover:flex">
                         <span>
-                          <i className="text-white fa-solid fa-microphone cursor-pointer"></i>
+                          <GiMicrophone className="text-white text-[18px] cursor-pointer" />
                         </span>
                         <span>
-                          <i className="text-white fa-regular fa-heart cursor-pointer"></i>
+                          <FaRegHeart className="text-white text-[18px] cursor-pointer" />
                         </span>
                         <span>
-                          <i className="text-white fa-solid fa-ellipsis cursor-pointer"></i>
+                          <MdOutlineMoreHoriz className="text-white text-[19px] cursor-pointer" />
                         </span>
                       </div>
                       <span className="group-hover:hidden">
@@ -137,7 +144,14 @@ const Chart_Top = ({ data }) => {
             );
           })}
         <div className="mt-5 mb-5 w-full flex justify-center items-center">
-          <button className="btn-top100 hover:bg-[hsla(0,0%,100%,0.1)]">Xem top 100</button>
+          <button
+            className="btn-top100 hover:bg-[hsla(0,0%,100%,0.1)]"
+            onClick={() => {
+              setOptions(!option);
+            }}
+          >
+            {option === 100 ? "ẩn bớt" : "Xem top 100"}
+          </button>
         </div>
       </div>
     </div>

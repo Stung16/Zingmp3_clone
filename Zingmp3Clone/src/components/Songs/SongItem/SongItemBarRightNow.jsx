@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useSelector  } from "react-redux";
-import { getInforSong } from "../../api/music";
-import { customText } from "../../utils/fn";
+import { useSelector } from "react-redux";
+// import { customText } from "../../utils/fn";
+import { getInforSong } from "../../../services/music.services";
+import { customText } from "../../../utils/fn";
 
 const SongItemBarRightNow = () => {
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
@@ -9,13 +10,17 @@ const SongItemBarRightNow = () => {
   const [songinfo, setSonginfo] = useState(null);
 
   useEffect(() => {
-    const fetch = async () => {
-      const data = await getInforSong(currentSongID);
-      if (data?.err === 0) {
-        setSonginfo(data.data);
-      }
-    };
-    fetch();
+    try {
+      const fetch = async () => {
+        const data = await getInforSong(currentSongID);
+        if (data?.err === 0) {
+          setSonginfo(data.data);
+        }
+      };
+      fetch();
+    } catch (error) {
+      console.log(error);
+    }
   }, [currentSongID]);
   return (
     <div>
@@ -36,7 +41,7 @@ const SongItemBarRightNow = () => {
               </div>
             </div>
             <div className="card-info">
-              <div className="name-song">{customText(songinfo?.title,20)}</div>
+              <div className="name-song">{customText(songinfo?.title, 20)}</div>
               <div className="subtitle">{songinfo?.artistsNames}</div>
             </div>
           </div>
@@ -53,7 +58,7 @@ const SongItemBarRightNow = () => {
       <div className="title">
         <h3 className="mb-1">Tiếp theo</h3>
         <span>
-          Từ playlist <a href="#">{customText(songinfo?.album?.title,20)}</a>
+          Từ playlist <a href="#">{customText(songinfo?.album?.title, 20)}</a>
         </span>
       </div>
     </div>

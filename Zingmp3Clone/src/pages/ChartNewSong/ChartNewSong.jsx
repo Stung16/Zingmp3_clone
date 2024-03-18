@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getNewReleaseChart } from "../../api/music";
 import { useDispatch, useSelector } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
 const { updateLoading,updateCurrentSong,checkPlay } = songSlices.actions;
 import { getTime } from "../../utils/fn";
 import "./chartnewsong.css";
+import { getNewReleaseChart } from "../../services/music.services";
 
 const ChartNewSong = () => {
   const [dataChart, setDataChart] = useState(null);

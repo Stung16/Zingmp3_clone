@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import "./album.css";
-import ListSong from "../../components/ListSong/ListSong";
 import { useSelector, useDispatch } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
-import { getDetailPlaylist } from "../../api/music";
 import PlayMusic from "../../components/Helper/PlayMusic/PlayMusic";
 import { customText } from "../../utils/fn";
+import ListSong from "../../components/Songs/ListSong/ListSong";
+import { getDetailPlaylist } from "../../services/music.services";
 const { checkPlay, getListSong, updateLoading } = songSlices.actions;
 
 const Album = () => {
@@ -32,8 +32,8 @@ const Album = () => {
     };
     fetchData();
     return () => {
-      localStorage.removeItem("codeAlbum")
-    }
+      localStorage.removeItem("codeAlbum");
+    };
   }, [id]);
   return (
     <div className="pt-5 text-white album-playlist">
@@ -115,7 +115,7 @@ const Album = () => {
             <span className="text-[hsla(0,0%,100%,0.5)]">Lời tựa</span>{" "}
             <span className="mb-[10px]">
               <span className="text-white">
-                {customText(playListData?.sortDescription,90)}
+                {customText(playListData?.sortDescription, 90)}
               </span>
             </span>
           </div>

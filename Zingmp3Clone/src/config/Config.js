@@ -1,4 +1,4 @@
 const Config = {
-    SERVER_API : "https://api-zingmp3-public-rust.vercel.app"
+    SERVER_API : import.meta.env.VITE_APP_API
 }
 export default Config

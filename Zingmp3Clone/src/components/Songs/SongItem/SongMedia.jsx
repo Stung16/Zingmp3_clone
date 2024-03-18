@@ -1,12 +1,14 @@
 import React from "react";
 import { getTime } from "../../utils/fn";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { songSlices } from "../../stores/slices/songSlices";
 const { updateCurrentSong, updateNext, checkPlay, updatePrev, pushHistory } =
   songSlices.actions;
 
 const SongMedia = ({ song }) => {
+  if (!song) return null;
+
   const dispatch = useDispatch();
   return (
     <div

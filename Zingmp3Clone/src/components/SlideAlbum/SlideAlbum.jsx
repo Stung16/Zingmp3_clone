@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import { getArrSlider } from "../../utils/fn";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
-const { updateCurrentSong, updateNext, updatePrev,updateIsVip,checkPlay } = songSlices.actions;
+const { updateCurrentSong, updateNext, updatePrev, checkPlay } =
+  songSlices.actions;
 import { useNavigate } from "react-router-dom";
+import { Card, Skeleton } from "@nextui-org/react";
 
 const SlideAlbum = ({ dataSlice }) => {
+  if (!dataSlice) return null;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -72,9 +76,9 @@ const SlideAlbum = ({ dataSlice }) => {
   const handlegetSongId = (item) => {
     if (item.type === 1) {
       dispatch(updateCurrentSong(item?.encodeId));
-      dispatch(updateNext(false))
-      dispatch(updatePrev(false))
-      dispatch(checkPlay(true))
+      dispatch(updateNext(false));
+      dispatch(updatePrev(false));
+      dispatch(checkPlay(true));
     } else {
       let parts = item.link.split("/");
       let result = parts.slice(2, 3).join("");
@@ -97,6 +101,49 @@ const SlideAlbum = ({ dataSlice }) => {
           );
         })}
       </div>
+      {!dataSlice && (
+        <div className="flex w-full gap-8 ">
+          <Card className="w-1/3 space-y-5 p-4 h-[200px]" radius="lg">
+            <Skeleton className="rounded-lg">
+              <div className="h-24 rounded-lg bg-default-300"></div>
+            </Skeleton>
+            <div className="space-y-3">
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+            </div>
+          </Card>
+          <Card className="w-1/3 space-y-5 p-4 h-[200px]" radius="lg">
+            <Skeleton className="rounded-lg">
+              <div className="h-24 rounded-lg bg-default-300"></div>
+            </Skeleton>
+            <div className="space-y-3">
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+            </div>
+          </Card>
+          <Card className="w-1/3 space-y-5 p-4 h-[200px]" radius="lg">
+            <Skeleton className="rounded-lg">
+              <div className="h-24 rounded-lg bg-default-300"></div>
+            </Skeleton>
+            <div className="space-y-3">
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+              <Skeleton className="w-3/5 rounded-lg">
+                <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+              </Skeleton>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./header.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { searchSliece } from "../../stores/slices/searchSliece";
+import { searchSliece } from "../../../stores/slices/searchSliece";
 
 const { getDataSearch } = searchSliece.actions;
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import Loading from "../Loading/Loading";
-import LogIn from "../Btn/LogIn/LogIn";
-import Infor from "../Infor/Infor";
+import Loading from "../../../components/Loading/Loading";
+import LogIn from "../../../components/Btn/LogIn/LogIn";
+import Infor from "../../../components/Infor/Infor";
 import { toast } from "react-toastify";
+import { search } from "../../../services/music.services";
 
 function Header() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -26,9 +27,7 @@ function Header() {
     if (e.keyCode === 13) {
       try {
         setLoading(true);
-        const respone = await fetch(
-          `https://api-zingmp3-public-rust.vercel.app/api/search?=${value}`
-        );
+        const respone = await search(value);
         const data = await respone.json();
         if (data?.err === 0) {
           dispatch(getDataSearch(data?.data));

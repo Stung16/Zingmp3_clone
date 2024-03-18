@@ -1,28 +1,33 @@
-import Config from "./config";
+import Config from "./Config";
 
 const { SERVER_API } = Config;
 const Client = {
   serverApi: SERVER_API,
+  token: null,
   setUrl: function (url) {
     this.serverApi = url;
   },
-
-  send: async function (url, method = "GET", body = null, apiKey = null) {
+  setToken: function (token) {
+    this.token = token;
+  },
+  send: async function (url, method = "GET", body = null) {
+    // url = SERVER_API + url;
     url = `${this.serverApi}${url}`;
-
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     };
-    if (apiKey) {
-      headers["X-Api-Key"] = apiKey;
+    if (this.token) {
+      headers["Authorization"] = `Bearer ${this.token}`;
     }
     const options = {
       method,
       headers,
     };
+
     if (body) {
       options.body = JSON.stringify(body);
     }
+
     const response = await fetch(url, options);
 
     const data = await response.json();
@@ -30,25 +35,26 @@ const Client = {
     return { response, data };
   },
 
-  get: function (url, body = null, apiKey = null) {
-    return this.send(url, "GET", body, apiKey);
+  get: function (url) {
+    return this.send(url);
   },
 
-  post: function (url, body = {}, apiKey = null) {
-    return this.send(url, "POST", body, apiKey);
+  post: function (url, body) {
+    return this.send(url, "POST", body);
   },
 
-  put: function (url, body = {}, apiKey = null) {
-    return this.send(url, "PUT", body, apiKey);
+  put: function (url, body) {
+    return this.send(url, "PUT", body);
   },
 
-  patch: function (url, body = {}, apiKey = null) {
-    return this.send(url, "PATCH", body, apiKey);
+  patch: function (url, body) {
+    return this.send(url, "PATCH", body);
   },
 
-  delete: function (url, apiKey = null) {
-    return this.send(url, "DELETE", null, apiKey);
+  delete: function (url) {
+    return this.send(url, "DELETE");
   },
 };
 
 export default Client;
+// client.setToken(accessToken);

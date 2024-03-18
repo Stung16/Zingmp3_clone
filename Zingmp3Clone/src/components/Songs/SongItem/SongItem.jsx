@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { songSlices } from "../../stores/slices/songSlices";
-import PlayMusic from "../Helper/PlayMusic/PlayMusic";
+import { songSlices } from "../../../stores/slices/songSlices";
+import PlayMusic from "../../Helper/PlayMusic/PlayMusic";
 const { updateCurrentSong, checkPlay } = songSlices.actions;
 
 const SongItem = ({ item }) => {
+  if (!item) return null;
+
   const dispatch = useDispatch();
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const isPlay = useSelector((state) => state.songValues.status);
-  // useEffect(() => {
 
-  // },[currentSongID])
-  // console.log(currentSongID);
   return (
     <div className="px-[15px] w-1/3">
       <div className="group">
@@ -44,7 +43,6 @@ const SongItem = ({ item }) => {
                 <div className={`zm-actions  ${currentSongID === item?.encodeId  ? "visible" : "group-hover:visible"} ${currentSongID === item?.encodeId && isPlay ? "" : "top-[50%]"}`}>
                   <span>
                     {currentSongID === item?.encodeId && isPlay ? (
-                      // <i className="text-white fa-solid fa-pause fa-xl"></i>
                       <PlayMusic />
                     ) : (
                       <i

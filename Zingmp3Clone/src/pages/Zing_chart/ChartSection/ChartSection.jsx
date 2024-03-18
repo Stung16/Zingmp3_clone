@@ -2,11 +2,12 @@ import React, { Fragment, memo, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart } from "chart.js/auto";
 import { useSelector } from "react-redux";
-import { options } from "../../utils/fn";
-import SongItem from "../SongItem/SongItem";
-import ChartZm from "../ChartZm/ChartZm";
+import { options } from "../../../utils/fn";
+import ChartZm from "../../../components/ChartZm/ChartZm";
 
 const ChartSection = ({ dataTrendding }) => {
+  if (!dataTrendding) return null;
+
   const listTrendding = dataTrendding?.trendding_VN;
   //   const [data, setData] = useState(null);
   //   const chart = useSelector((state) => state.songValues.chart);
@@ -26,7 +27,7 @@ const ChartSection = ({ dataTrendding }) => {
     "00",
     "02",
   ];
-  const datasets = [    
+  const datasets = [
     {
       label: "Dataset 1",
       data: [

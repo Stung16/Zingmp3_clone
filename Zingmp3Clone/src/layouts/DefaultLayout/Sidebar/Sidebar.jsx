@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { FaCirclePlay } from "react-icons/fa6";
 
 const Sidebar = () => {
   const { isAuthenticated } = useAuth0();
@@ -47,7 +48,7 @@ const Sidebar = () => {
                 </svg>
                 <span>Khám phá</span>
                 <button className=" shuffle-play-btn" tabIndex="0">
-                  <i className="fa-regular fa-circle-play"></i>
+                  <FaCirclePlay className="text-white" />
                 </button>
               </NavLink>
             </li>
@@ -73,7 +74,7 @@ const Sidebar = () => {
                   ></path>
                 </svg>
                 <button className=" shuffle-play-btn" tabIndex="0">
-                  <i className="fa-regular fa-circle-play"></i>
+                  <FaCirclePlay className="text-white" />
                 </button>
                 <span>#zingchart</span>
               </NavLink>
@@ -99,7 +100,7 @@ const Sidebar = () => {
                   <img src={"./img/live-tag.svg"} alt="" />
                 </span>
                 <button className=" shuffle-play-btn" tabIndex="0">
-                  <i className="fa-regular fa-circle-play"></i>
+                  <FaCirclePlay className="text-white" />
                 </button>
               </NavLink>
             </li>
@@ -121,7 +122,7 @@ const Sidebar = () => {
                 </svg>
                 <span>Thư Viện</span>
                 <button className=" shuffle-play-btn" tabIndex="0">
-                  <i className="fa-regular fa-circle-play"></i>
+                  <FaCirclePlay className="text-white" />
                 </button>
               </NavLink>
             </li>
@@ -164,7 +165,7 @@ const Sidebar = () => {
                     </svg>
                     <span>BXH Nhạc Mới</span>
                     <button className=" shuffle-play-btn" tabIndex="0">
-                      <i className="fa-regular fa-circle-play"></i>
+                      <FaCirclePlay className="text-white" />
                     </button>
                   </NavLink>
                 </li>
@@ -213,7 +214,7 @@ const Sidebar = () => {
                       ></path>
                     </svg>
                     <button className=" shuffle-play-btn" tabIndex="0">
-                      <i className="fa-regular fa-circle-play"></i>
+                      <FaCirclePlay className="text-white" />
                     </button>
                     <span>Chủ Đề & Thể Loại</span>
                   </NavLink>
@@ -242,7 +243,7 @@ const Sidebar = () => {
                     </svg>
                     Top 100
                     <span className=" shuffle-play-btn" tabIndex="0">
-                      <i className="fa-regular fa-circle-play"></i>
+                      <FaCirclePlay className="text-white" />
                     </span>
                   </NavLink>
                 </li>
@@ -316,7 +317,7 @@ const Sidebar = () => {
                       </svg>
                       <span>Nghe gần đây</span>
                       <button className=" shuffle-play-btn" tabIndex="0">
-                        <i className="fa-regular fa-circle-play"></i>
+                        <FaCirclePlay className="text-white" />
                       </button>
                     </NavLink>
                   </li>
@@ -357,7 +358,7 @@ const Sidebar = () => {
                       </svg>
                       <span>Bài hát yêu thích</span>
                       <button className=" shuffle-play-btn" tabIndex="0">
-                        <i className="fa-regular fa-circle-play"></i>
+                        <FaCirclePlay className="text-white" />
                       </button>
                     </a>
                   </li>
@@ -420,7 +421,7 @@ const Sidebar = () => {
                       </svg>
                       <span>Playlish</span>
                       <button className=" shuffle-play-btn" tabIndex="0">
-                        <i className="fa-regular fa-circle-play"></i>
+                        <FaCirclePlay className="text-white" />
                       </button>
                     </a>
                   </li>
@@ -462,7 +463,7 @@ const Sidebar = () => {
                       </svg>
                       <span>Album</span>
                       <button className=" shuffle-play-btn" tabIndex="0">
-                        <i className="fa-regular fa-circle-play"></i>
+                        <FaCirclePlay className="text-white" />
                       </button>
                     </a>
                   </li>
@@ -504,7 +505,7 @@ const Sidebar = () => {
                       </svg>
                       <span>Đã tải lên</span>
                       <button className=" shuffle-play-btn" tabIndex="0">
-                        <i className="fa-regular fa-circle-play"></i>
+                        <FaCirclePlay className="text-white" />
                       </button>
                     </a>
                   </li>

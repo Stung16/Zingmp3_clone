@@ -13,6 +13,7 @@ const initialState = {
   isShuffle: JSON.parse(localStorage.getItem("isShuffle")) || false,
   history: JSON.parse(localStorage.getItem("history")) || [],
   favourite: JSON.parse(localStorage.getItem("favourite")) || [],
+  dataHome: [],
 };
 export const songSlices = createSlice({
   name: "songNow",
@@ -53,16 +54,17 @@ export const songSlices = createSlice({
       localStorage.setItem("isShuffle", JSON.stringify(action.payload));
       state.isShuffle = action.payload;
     },
-    checkBarRight: (state, action) => {
-      state.isRight = action.payload;
-    },
+
     pushHistory: (state, action) => {
       state.history.push(action.payload);
-      localStorage.setItem("history",JSON.stringify(state.history))
+      localStorage.setItem("history", JSON.stringify(state.history));
     },
     pushFavourite: (state, action) => {
       state.favourite.push(action.payload);
-      localStorage.setItem("favourite",JSON.stringify(state.favourite))
+      localStorage.setItem("favourite", JSON.stringify(state.favourite));
+    },
+    updateDataHome: (state, action) => {
+      state.dataHome = action.payload;
     },
   },
 });

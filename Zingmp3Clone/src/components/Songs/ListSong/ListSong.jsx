@@ -1,9 +1,9 @@
 import React, { memo, useEffect } from "react";
-import { getTime } from "../../utils/fn";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { songSlices } from "../../stores/slices/songSlices";
+import { songSlices } from "../../../stores/slices/songSlices";
+import { getTime } from "../../../utils/fn";
 const {
   updateCurrentSong,
   updateNext,

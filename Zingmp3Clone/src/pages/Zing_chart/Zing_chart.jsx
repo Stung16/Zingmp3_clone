@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ChartZm from "../../components/ChartZm/ChartZm";
 import { options } from "../../utils/fn";
-import { getChartHome } from "../../api/music";
 import { songSlices } from "../../stores/slices/songSlices";
 import { useDispatch, useSelector } from "react-redux";
 import Chart_Top from "../../components/Chart_Top/Chart_Top";
+import { getChartHome } from "../../services/music.services";
 const { updateLoading } = songSlices.actions;
 
 const Zing_chart = () => {

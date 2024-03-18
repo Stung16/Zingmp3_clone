@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Bar_RightMusic.css";
-import ListSongBarRight from "../ListSong/ListSongBarRight";
-import SongItemBarRightNow from "../SongItem/SongItemBarRightNow";
+import ListSongBarRight from "../Songs/ListSong/ListSongBarRight";
+import SongItemBarRightNow from "../Songs/SongItem/SongItemBarRightNow";
+import { FaRegClock } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa6";
+import { MdOutlineMoreHoriz } from "react-icons/md";
+import { BiSolidPlaylist } from "react-icons/bi";
+
+// import SongItemBarRightNow from "../SongItem/SongItemBarRightNow";
 
 const Bar_RightMusic = () => {
   return (
@@ -11,13 +17,19 @@ const Bar_RightMusic = () => {
         htmlFor="check"
         className="zm-list-music ml-1 mr-5 relative p-[5px] check-span flex justify-center items-center rounded-sm cursor-pointer"
       >
-        <i className="text-white fa-solid fa-music"></i>
+        <BiSolidPlaylist className="text-white text-[20px]" />
       </label>
       <div className="bar-right overflow-x-hidden">
         <div className="bar-right_header">
           <div className="bar-right_header_inner">
             <div className="inner-left">
-              <input id="list" className="hidden" type="radio" name="isCheck" defaultChecked />
+              <input
+                id="list"
+                className="hidden"
+                type="radio"
+                name="isCheck"
+                defaultChecked
+              />
               <label htmlFor="list" className="lv-item ">
                 <h6>Danh sách phát</h6>
               </label>
@@ -34,10 +46,10 @@ const Bar_RightMusic = () => {
 
             <div className="innner-right flex justify-center items-center gap-[5px]">
               <span className="flex justify-center items-center p-2 bg-overlay rounded-full">
-                <i className="text-[#d1cfd4] fa-regular fa-clock"></i>
+                <FaRegClock className="text-[#d1cfd4] text-[15px]" />
               </span>
               <span className="flex justify-center items-center p-2 bg-overlay  rounded-full">
-                <i className="text-[#d1cfd4] fa-solid fa-ellipsis"></i>
+                <MdOutlineMoreHoriz className="hover:scale-105 hover:text-slate-50 text-[#d1cfd4] text-[14px]" />
               </span>
             </div>
           </div>

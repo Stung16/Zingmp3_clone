@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from "react-redux";
 
 export const getArrSlider = (start, end, number) => {
   const limit = start > end ? number : end;

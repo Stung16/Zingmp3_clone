@@ -1,11 +1,11 @@
 import React,{Fragment} from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SongItem from "../SongItem/SongItem";
-const ListTrend = () => {
-  const trend = useSelector((state) => state.songValues.trendding);
+import SongItem from "../Songs/SongItem/SongItem";
+const ListTrend = ({trends}) => {
+  if (!trends) return null;
+
   return (
     <>
-      {trend?.map((item, index) => {
+      {trends?.map((item, index) => {
         return (
           <Fragment key={index}>
             <SongItem item={item} />

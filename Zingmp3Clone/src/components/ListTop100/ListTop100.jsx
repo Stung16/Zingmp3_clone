@@ -3,15 +3,15 @@ import "../ListSection/listSection.css";
 import Album from "../Album/Album";
 
 const ListTop100 = ({ playList }) => {
+  if (!playList) return null;
+
   let listMusic;
   if (playList) {
-    if(playList?.title ==="Nổi bật"){
-        listMusic = playList?.items?.slice(0, 5);
-    }else{
-        listMusic = playList?.items
+    if (playList?.title === "Nổi bật") {
+      listMusic = playList?.items?.slice(0, 5);
+    } else {
+      listMusic = playList?.items;
     }
-
-    
   }
   return (
     <div className="zm-section mt-[48px]">

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { songSlices } from "../../stores/slices/songSlices";
+import { songSlices } from "../../../stores/slices/songSlices";
 import SongItemBarRightItem from "../SongItem/SongItemBarRightItem";
-import { getDetailPlaylist } from "../../services/music.services";
-const { getListSong, updateLoading } = songSlices.actions;
+import { getDetailPlaylist } from "../../../services/music.services";
+const { checkPlay, getListSong, updateLoading } = songSlices.actions;
 
 const ListSongBarRight = () => {
-  const codeAlbum = localStorage?.getItem("codeAlbum");
+  const codeAlbum = localStorage?.getItem("codeAlbum")
   const dispatch = useDispatch();
   const [playListData, setPlayListData] = useState(null);
 
@@ -26,6 +26,7 @@ const ListSongBarRight = () => {
     };
     fetchData();
   }, [codeAlbum]);
+  // console.log(playListData);
   return <SongItemBarRightItem data={playListData} />;
 };
 

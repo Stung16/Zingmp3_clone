@@ -1,12 +1,16 @@
-import React, { memo, useEffect, useLayoutEffect, useState } from "react";
+import React, { memo, useEffect, useState, useRef } from "react";
 import "./controllplay.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
 import { toast } from "react-toastify";
-import { getInforSong, getSong } from "../../api/music";
+import { MdOutlineMoreHoriz } from "react-icons/md";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa";
+
 import Bar_RightMusic from "../Bar_RightMusic/Bar_RightMusic";
 import LoadingAudio from "../Loading/LoadingAudio";
+import { getInforSong, getSong } from "../../services/music.services";
 const {
   checkPlay,
   updateCurrentSong,
@@ -20,6 +24,8 @@ const {
 const ControllPlay = () => {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.songValues.songs);
+  const audioEl = useRef(new Audio());
+  const [source, setSource] = useState(null);
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const isPlay = useSelector((state) => state.songValues.status);
   const isVip = useSelector((state) => state.songValues.isVip);
@@ -32,15 +38,13 @@ const ControllPlay = () => {
   let initialValue = 0;
   let value;
   const [loading, setLoading] = useState(false);
-  const [audioEl, setAudio] = useState(
-    new Audio(JSON.parse(localStorage.getItem("audioNow")))
-  );
+
   // const audioEl = useRef(new Audio());
   const [songinfo, setSonginfo] = useState(null);
   const [volume, setVolume] = useState(100);
 
   const alertWarring = () => {
-    audioEl.pause();
+    audioEl.current.pause();
     dispatch(checkPlay(false));
     toast.warning("Bài hát chỉ dành cho tài khoản VIP");
   };
@@ -59,16 +63,17 @@ const ControllPlay = () => {
           setSonginfo(res1.data);
         }
         if (res2.err === 0) {
-          audioEl.pause();
+          audioEl.current.pause();
+          dispatch(checkPlay(false));
           dispatch(updateIsVip(false));
           handleUpdateValue(0);
-          setAudio(new Audio(res2.data["128"]));
+          setSource(res2.data["128"]);
         }
         if (res2.err !== 0) {
           dispatch(updateIsVip(true));
           handleUpdateValue(0);
-          audioEl.pause();
-          setAudio(new Audio());
+          audioEl.current.pause();
+          // setAudio(new Audio());
         }
       } catch (error) {
         console.log(error);
@@ -82,13 +87,13 @@ const ControllPlay = () => {
   useEffect(() => {
     if (isVip) {
       return alertWarring();
-    } else {
-      audioEl.load();
-      if (isPlay) {
-        audioEl.play();
-      }
     }
-  }, [audioEl]);
+    audioEl.current.pause();
+    audioEl.current.src = source;
+    audioEl.current.load();
+
+    if (!isPlay) audioEl.current.play();
+  }, [currentSongID, source]);
 
   useEffect(() => {
     var progressBarWidth = progressBar_Ref.clientWidth;
@@ -102,10 +107,10 @@ const ControllPlay = () => {
         isDrag = true;
         handleUpdateValue(value);
 
-        var currentTime = (value / 100) * audioEl.duration;
+        var currentTime = (value / 100) * audioEl.current.duration;
         if (isNaN(currentTime) || !isFinite(currentTime)) return currentTime;
         currentTime_Ref.innerText = getTime(currentTime);
-        audioEl.currentTime = currentTime;
+        audioEl.current.currentTime = currentTime;
         return currentTime;
       }
     });
@@ -134,7 +139,7 @@ const ControllPlay = () => {
 
         handleUpdateValue(value);
 
-        var currentTime = (value / 100) * audioEl.duration;
+        var currentTime = (value / 100) * audioEl.current.duration;
 
         currentTime_Ref.innerText = getTime(currentTime);
       }
@@ -145,11 +150,11 @@ const ControllPlay = () => {
         isDrag = false;
         initialValue = value;
 
-        var CurrentTime = (value / 100) * audioEl.duration;
+        var CurrentTime = (value / 100) * audioEl.current.duration;
         if (isNaN(CurrentTime) || !isFinite(CurrentTime)) {
-          return (audioEl.currentTime = 0);
+          return (audioEl.current.currentTime = 0);
         }
-        return (audioEl.currentTime = CurrentTime);
+        return (audioEl.current.currentTime = CurrentTime);
       }
     });
 
@@ -169,16 +174,17 @@ const ControllPlay = () => {
       }`;
     };
 
-    audioEl.addEventListener("loadeddata", function () {
-      duration_Ref.innerText = getTime(audioEl.duration);
+    audioEl.current.addEventListener("loadeddata", function () {
+      duration_Ref.innerText = getTime(audioEl.current.duration);
     });
 
-    audioEl.addEventListener("timeupdate", function () {
+    audioEl.current.addEventListener("timeupdate", function () {
       //Lấy ra tỷ lệ phần trăm dựa vào currentTime và duration
-      var value = (audioEl.currentTime * 100) / audioEl.duration;
+      var value =
+        (audioEl.current.currentTime * 100) / audioEl.current.duration;
 
       if (!isDrag) {
-        currentTime_Ref.innerText = getTime(audioEl.currentTime);
+        currentTime_Ref.innerText = getTime(audioEl.current.currentTime);
 
         handleUpdateValue(value);
       }
@@ -186,33 +192,33 @@ const ControllPlay = () => {
 
     progressBar_Ref.addEventListener("mousemove", function (e) {
       var rate = (e.offsetX * 100) / progressBarWidth;
-      var currentTime = (rate / 100) * audioEl.duration;
+      audioEl.currentTime = (rate / 100) * audioEl.current.duration;
     });
 
-    audioEl.addEventListener("play", function () {
+    audioEl.current.addEventListener("play", function () {
       dispatch(checkPlay(true));
     });
-    audioEl.addEventListener("pause", function () {
+    audioEl.current.addEventListener("pause", function () {
       dispatch(checkPlay(false));
     });
 
-    audioEl.addEventListener("ended", function () {
+    audioEl.current.addEventListener("ended", function () {
       dispatch(checkPlay(false));
       handleUpdateValue(0);
       currentTime_Ref.innerText = "00:00";
     });
-  }, [currentSongID, audioEl]);
+  }, [currentSongID]);
 
   useEffect(() => {
-    audioEl.volume = volume / 100;
+    audioEl.current.volume = volume / 100;
   }, [volume]);
 
   const handletongglePlay = () => {
     if (isPlay) {
-      audioEl.pause();
+      audioEl.current.pause();
       dispatch(checkPlay(false));
     } else {
-      audioEl.play();
+      audioEl.current.play();
       dispatch(checkPlay(true));
     }
   };
@@ -260,7 +266,7 @@ const ControllPlay = () => {
         var random_integer = Math.floor(
           Math.random() * (+listSong?.length + 1)
         );
-        audioEl.addEventListener("ended", function () {
+        audioEl.current.addEventListener("ended", function () {
           if (listSong?.[random_integer]?.encodeId) {
             dispatch(updateCurrentSong(listSong?.[random_integer]?.encodeId));
             dispatch(checkPlay(true));
@@ -272,14 +278,14 @@ const ControllPlay = () => {
 
     if (isRepeat) {
       if (currentSongID) {
-        audioEl.addEventListener("ended", function () {
-          audioEl.play();
+        audioEl.current.addEventListener("ended", function () {
+          audioEl.current.play();
           dispatch(checkPlay(true));
           handleUpdateValue(0);
         });
       }
     }
-  }, [audioEl, songs, isShuffle, isRepeat]);
+  }, [songs, isShuffle, isRepeat]);
 
   // const handleShuffle = () => {
   //   if (songs) {
@@ -327,10 +333,10 @@ const ControllPlay = () => {
                 <div className="media-right">
                   <div className="flex justify-center items-center">
                     <div className="flex-grow-[1] p-[3px] w-8 h-8 flex justify-center items-center">
-                      <i className="text-white fa-regular fa-heart"></i>
+                      <FaRegHeart className="text-white" />
                     </div>
                     <div className="flex-grow-[1] p-[3px] w-8 h-8 flex justify-center items-center">
-                      <i className="text-white fa-solid fa-ellipsis"></i>
+                      <MdOutlineMoreHoriz className="text-white text-[18px]" />
                     </div>
                   </div>
                 </div>
@@ -349,7 +355,7 @@ const ControllPlay = () => {
                 >
                   <i
                     className={`text-white fa-xl fa-solid fa-shuffle ${
-                      isShuffle && "text-[#9b4de0]"
+                      isShuffle === true && "text-[#9b4de0]"
                     }`}
                   ></i>
                 </button>

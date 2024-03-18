@@ -1,22 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./defaulayot.css";
 import Sidebar from "./Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "../../components/Header/Header";
+import Header from "./Header/Header";
 import ControllPlay from "../../components/ControllPlay/ControllPlay";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../components/Loading/Loading";
+import { songSlices } from "../../stores/slices/songSlices";
+const { updateLoading, updateDataHome } = songSlices.actions;
 import Bar_RightMusic from "../../components/Bar_RightMusic/Bar_RightMusic";
+import { getHome } from "../../services/music.services";
 
 function DefaultLayout() {
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
+  const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.songValues.isLoading);
-  const [right, setRight] = useState(null);
+
   useEffect(() => {
-    setRight(localStorage.getItem("isBarRight"));
-  }, [right]);
+    const fetchData = async () => {
+      dispatch(updateLoading(true));
+      try {
+        const homeData = await getHome();
+        if (homeData?.err === 0) {
+          dispatch(updateDataHome(homeData?.data?.items));
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        dispatch(updateLoading(false));
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <main className="overflow-hidden flex flex-col h-full">
       {isLoading && <Loading />}

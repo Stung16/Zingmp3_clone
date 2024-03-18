@@ -1,13 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { songSlices } from "../../stores/slices/songSlices";
+import { FaRegHeart } from "react-icons/fa";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { MdOutlineMoreHoriz } from "react-icons/md";
 const { updateCurrentSong, updateNext, updatePrev, updateIsVip, checkPlay } =
   songSlices.actions;
 
 const Album = ({ item }) => {
+  if (!item) return null;
   // const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log(item);
   return (
     <div className="w-1/5 px-[14px] mb-5" role="list">
       <div
@@ -26,9 +29,9 @@ const Album = ({ item }) => {
         />
         <div className="group/edit invisible group-hover/item:visible hover:bg-[#33333374] absolute w-full h-full inset-0 z-10">
           <div className="absolute flex justify-between items-center right-[18%] left-[18%] top-1/2 -translate-y-1/2">
-            <i className="hover:scale-105 hover:text-slate-50 text-white cursor-pointer fa-regular fa-heart fa-lg"></i>
-            <i className="hover:text-[50px] text-white cursor-pointer fa-regular fa-circle-play text-[45px]"></i>
-            <i className="hover:scale-105 hover:text-slate-50 text-white cursor-pointer fa-solid fa-ellipsis fa-lg"></i>
+            <FaRegHeart className="hover:scale-105 hover:text-slate-50 text-white text-[20px]" />
+            <FaRegCirclePlay className="hover:text-[50px] text-white text-[45px]" />
+            <MdOutlineMoreHoriz className="hover:scale-105 hover:text-slate-50 text-white text-[28px]" />
           </div>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import React from "react";
-import { customText } from "../../utils/fn";
-import { songSlices } from "../../stores/slices/songSlices";
+
+import { songSlices } from "../../../stores/slices/songSlices";
 const { updateCurrentSong,checkPlay } = songSlices.actions;
 import { useDispatch,useSelector } from "react-redux";
+import { customText } from "../../../utils/fn";
 
 const SongItemBarRightItem = ({ data }) => {
+  if (!data) return null;
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const dispatch = useDispatch()
   const listSong = data?.items;
