@@ -27,7 +27,7 @@ const ListSection = ({ playList, number }) => {
                 </Fragment>
               );
             })}
-            {!playList && <SkeletonAlbumList />}
+            {/* {!playList && <SkeletonAlbumList />} */}
           </div>
         </div>
       </div>
