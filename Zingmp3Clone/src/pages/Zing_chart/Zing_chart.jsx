@@ -1,91 +1,107 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import Chart from "chart.js/auto";
 import ChartZm from "../../components/ChartZm/ChartZm";
 import { options } from "../../utils/fn";
 import { songSlices } from "../../stores/slices/songSlices";
-import { useDispatch, useSelector } from "react-redux";
-import Chart_Top from "../../components/Chart_Top/Chart_Top";
+import { useDispatch } from "react-redux";
 import { getChartHome } from "../../services/music.services";
+import Chart_Top from "../../components/Chart_Top/Chart_Top";
 const { updateLoading } = songSlices.actions;
 
 const Zing_chart = () => {
   const dispatch = useDispatch();
+  const [dataChart, setDataChart] = useState(null);
+  const [dataChartZm, setDataChartZm] = useState({ labels: [], datasets: [] });
 
-  const labels = [
-    "04",
-    "06",
-    "08",
-    "10",
-    "12",
-    "14",
-    "16",
-    "18",
-    "20",
-    "22",
-    "00",
-    "02",
-  ];
-  const datasets = [
-    {
-      label: "Dataset 1",
-      data: [
-        1504, 2057, 4661, 6102, 4957, 5551, 5201, 5333, 4118, 4182, 3332, 2385,
-      ],
-      tension: 0.3,
-      borderWidth: 2,
-      pointHoverRadius: 5,
-      pointHoverBorderWidth: 5,
-      animation: false,
-      pointHitRadius: 5,
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: [
-        1645, 1970, 3908, 4846, 3915, 4839, 4097, 3657, 2566, 2977, 3511, 2684,
-      ],
-      tension: 0.3,
-      borderWidth: 2,
-      pointHoverRadius: 5,
-      pointHoverBorderWidth: 5,
-      animation: false,
-      pointHitRadius: 5,
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-    {
-      label: "Dataset 3",
-      data: [
-        1386, 1522, 2665, 3330, 2631, 3414, 2931, 2604, 2007, 1975, 2593, 2205,
-      ],
-      tension: 0.3,
-      borderWidth: 2,
-      pointHoverRadius: 5,
-      pointHoverBorderWidth: 5,
-      animation: false,
-      pointHitRadius: 5,
-      borderColor: "#28b799",
-      backgroundColor: "#28b7998f",
-    },
-  ];
-  const data = { labels, datasets };
-  const [dataChart, setDataChart] = useState({});
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(updateLoading(true));
-      const data = await getChartHome();
-      if (data) {
-        setDataChart(data);
+      try {
+        dispatch(updateLoading(true));
+        const dataChartApi = await getChartHome();
+        if (dataChartApi?.err === 0) {
+          const chartDataa = dataChartApi?.data?.RTChart;
+          setDataChart(chartDataa);
+          const labels = chartDataa?.chart?.times
+            ?.filter((item) => item?.hour % 2 === 0)
+            ?.map((item) => item?.hour);
+          const datasets = [];
+          if (chartDataa?.chart?.items) {
+            for (let i = 0; i < 3; i++) {
+              datasets.push({
+                data: chartDataa?.chart?.items[
+                  Object?.keys(chartDataa?.chart?.items)[i]
+                ]
+                  ?.filter((item) => item?.hour % 2 === 0)
+                  ?.map((item) => item?.counter),
+                borderColor:
+                  i === 0
+                    ? "#28b799"
+                    : i === 1
+                    ? "rgb(255, 99, 132)"
+                    : "rgb(53, 162, 235)",
+                tension: 0.3,
+                borderWidth: 2,
+                pointHoverRadius: 5,
+                pointHoverBorderWidth: 5,
+                animation: false,
+                pointHitRadius: 5,
+                backgroundColor:
+                  i === 0
+                    ? "#28b7998f"
+                    : i === 1
+                    ? "rgba(255, 99, 132, 0.5)"
+                    : "rgba(53, 162, 235, 0.5)",
+              });
+            }
+
+            setDataChartZm({ labels, datasets });
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
         dispatch(updateLoading(false));
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
+  console.log(dataChartZm);
+  console.log(dataChart);
+
   return (
     <>
-      <div className="h-full flex justify-center  flex-col">
-        <ChartZm options={options} data={data} />
-        {data && <Chart_Top data={dataChart?.data?.RTChart}/>}
+      <div className="h-full flex  flex-col mt-12">
+        {dataChart && ChartZm ? (
+          <ChartZm options={options} data={dataChartZm} />
+        ) : (
+          <div className="w-full h-[10rem] bg-gray-200 animate-pulse mt-6 rounded-lg">
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="w-[95%] h-6 bg-gray-300 rounded"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+            </div>
+          </div>
+        )}
+
+        {dataChart ? (
+          <Chart_Top data={dataChart} />
+        ) : (
+          <div className="w-full h-auto bg-gray-200 animate-pulse mt-6 rounded-lg">
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="w-[95%] h-6 bg-gray-300 rounded"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+              <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

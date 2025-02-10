@@ -14,13 +14,7 @@ import SearchSong from "../pages/Search/SearchSong/SearchSong";
 import SearchPlaylist from "../pages/Search/SearchPlaylist/SearchPlaylist";
 import SearchArtist from "../pages/Search/SearchArtist/SearchArtist";
 import SearchVideo from "../pages/Search/SearchVideo/SearchVideo";
-import History from "../components/History/History";
-import HistorySong from "../components/History/HistorySong/HistorySong";
-import HistoryMv from "../components/History/HistoryMv/HistoryMv";
-import HistoryPlaylist from "../components/History/HistoryPlaylist/HistoryPlaylist";
-import HistoryRadio from "../components/History/HistoryRadio/HistoryRadio";
 import ErrorPage from "../pages/ErrorPage.js/ErrorPage";
-import AuthMiddleware from "../middlewares/AuthMiddleware";
 export const publicRoutes = (
   <>
     <Route path="/" element={<DefaultLayout />}>
@@ -31,14 +25,6 @@ export const publicRoutes = (
       <Route path="/moi-phat-hanh" element={<ChartNewSong />} />
       <Route path="/hub" element={<Hub />} />
       <Route path="/top100" element={<Top100 />} />
-      <Route path="/" element={<History />}>
-        <Route element={<AuthMiddleware />}>
-          <Route path="/history/song" element={<HistorySong />} />
-          <Route path="/history/mv" element={<HistoryMv />} />
-          <Route path="/history/playlist" element={<HistoryPlaylist />} />
-          <Route path="/history/radio" element={<HistoryRadio />} />
-        </Route>
-      </Route>
       <Route path="/album/:slug/:id" element={<Album />} />
       <Route path="/tim-kiem" element={<Search />}>
         <Route path="/tim-kiem/tat-ca" element={<SearchAll />} />

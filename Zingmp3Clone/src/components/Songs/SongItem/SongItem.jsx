@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
 import { songSlices } from "../../../stores/slices/songSlices";
 import PlayMusic from "../../Helper/PlayMusic/PlayMusic";
+import { formatTimestamp } from "../../../utils/fn";
 const { updateCurrentSong, checkPlay } = songSlices.actions;
 
 const SongItem = ({ item }) => {
-
   const dispatch = useDispatch();
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const isPlay = useSelector((state) => state.songValues.status);
@@ -39,7 +39,17 @@ const SongItem = ({ item }) => {
                   className="group-hover:visible opacityy"
                   data-value={item.audio}
                 ></div>
-                <div className={`zm-actions  ${currentSongID === item?.encodeId  ? "visible" : "group-hover:visible"} ${currentSongID === item?.encodeId && isPlay ? "" : "top-[50%]"}`}>
+                <div
+                  className={`zm-actions  ${
+                    currentSongID === item?.encodeId
+                      ? "visible"
+                      : "group-hover:visible"
+                  } ${
+                    currentSongID === item?.encodeId && isPlay
+                      ? ""
+                      : "top-[50%]"
+                  }`}
+                >
                   <span>
                     {currentSongID === item?.encodeId && isPlay ? (
                       <PlayMusic />
@@ -53,17 +63,20 @@ const SongItem = ({ item }) => {
                 </div>
               </div>
               <div className="card-info">
-                <div className="title-wrapper">
+                <div className="title-wrapper break-words line-clamp-1">
                   <span>{item?.title}</span>
                 </div>
                 <h3 className="is-one-line is-truncate subtitle">
-                  <p className="singer-name hover:text-[#9b4de0]" href="#">
+                  <p
+                    className="singer-name hover:text-[#9b4de0] break-words line-clamp-1"
+                    href="#"
+                  >
                     {`${item?.artistsNames}`}
                   </p>
                 </h3>
 
                 <div className="time-release">
-                  <span>hôm qua</span>
+                  <span>{formatTimestamp(item?.releaseDate)}</span>
                 </div>
               </div>
             </div>

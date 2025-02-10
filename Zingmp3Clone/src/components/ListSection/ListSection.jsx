@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+/* eslint-disable react/prop-types */
+import { Fragment } from "react";
 import "./listSection.css";
 import Album from "../Album/Album";
-import SkeletonAlbumList from "../Loading/SkeletonLoading/SkeletonAlbumList";
 
 const ListSection = ({ playList, number }) => {
   let listMusic;
   if (playList) {
-    listMusic = playList?.items?.slice(0,number);
+    listMusic = playList?.items?.slice(0, number);
   }
   return (
     <div className="zm-section mt-[48px]">
@@ -27,7 +27,6 @@ const ListSection = ({ playList, number }) => {
                 </Fragment>
               );
             })}
-            {/* {!playList && <SkeletonAlbumList />} */}
           </div>
         </div>
       </div>

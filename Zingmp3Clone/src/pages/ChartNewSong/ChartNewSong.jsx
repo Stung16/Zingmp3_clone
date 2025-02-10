@@ -1,14 +1,13 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
-const { updateLoading,updateCurrentSong,checkPlay } = songSlices.actions;
+const { updateLoading, updateCurrentSong, checkPlay } = songSlices.actions;
 import { getTime } from "../../utils/fn";
 import "./chartnewsong.css";
 import { getNewReleaseChart } from "../../services/music.services";
 
 const ChartNewSong = () => {
-  const [dataChart, setDataChart] = useState({});
+  const [dataChart, setDataChart] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +19,8 @@ const ChartNewSong = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
+
   return (
     <div>
       <div className="mb-[32px] title-newchart pt-10 ml-2">
@@ -29,9 +29,9 @@ const ChartNewSong = () => {
           <i className="text-white text-[35px] fa-solid fa-circle-play"></i>
         </span>
       </div>
-      <div className="list_chart">
-        {dataChart &&
-          dataChart?.map((item, index) => {
+      {dataChart?.length ? (
+        <div className="list_chart">
+          {dataChart?.map((item, index) => {
             return (
               <div key={index} className="overflow-hidden rounded p-[10px]">
                 <div className="border_b group">
@@ -60,7 +60,7 @@ const ChartNewSong = () => {
                         </div>
                       </div>
                       <div className="cart-info">
-                        <div className="name-song">
+                        <div className="name-song break-words line-clamp-1 pr-4">
                           <span>{item?.title}</span>
                         </div>
                         <div className="name-atirt">
@@ -96,7 +96,25 @@ const ChartNewSong = () => {
               </div>
             );
           })}
-      </div>
+        </div>
+      ) : (
+        <div className="w-full h-auto mt-6 rounded-lg">
+          <div className="flex flex-col items-center justify-center h-full">
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+            <div className="w-[95%] h-12 bg-gray-300 rounded animate-pulse mt-4"></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

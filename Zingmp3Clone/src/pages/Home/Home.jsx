@@ -1,24 +1,61 @@
-import React from "react";
-import SlideAlbum from "../../components/SlideAlbum/SlideAlbum";
 import Trendding from "../../components/Trendding/Trendding";
 import ListSection from "../../components/ListSection/ListSection";
 import { useSelector } from "react-redux";
 import Footer from "../../layouts/DefaultLayout/Footer/Footer";
 import ChartSection from "../Zing_chart/ChartSection/ChartSection";
+import SkeletonAlbumList from "../../components/Loading/SkeletonLoading/SkeletonAlbumList";
+import { GetdataSection } from "../../utils/fn";
 
 const Home = () => {
   const homeData = useSelector((state) => state.songValues.dataHome);
+
   return (
     <>
-      <SlideAlbum dataSlice={homeData?.[0]?.items} />
-      <Trendding dataTrendding={homeData?.[2]} />
-      <ListSection playList={homeData?.[3]} number={5} />
-      <ListSection playList={homeData?.[4]} number={5} />
-      <ListSection playList={homeData?.[5]} number={5} />
-      <ListSection playList={homeData?.[6]} number={5} />
-      <ListSection playList={homeData?.[9]} number={5} />
-      <ChartSection dataTrendding={homeData?.[2]} />
-      <ListSection playList={homeData?.[11]} number={5} />
+      <Trendding dataTrendding={GetdataSection(homeData, "new-release")} />
+      {homeData?.length ? (
+        <ListSection
+          playList={GetdataSection(homeData, "playlist")}
+          number={5}
+        />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+      {homeData?.length ? (
+        <ListSection
+          playList={GetdataSection(homeData, "newReleaseChart")}
+          number={5}
+        />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+      {homeData?.length ? (
+        <ListSection
+          playList={GetdataSection(homeData, "playlist", "hAlbum")}
+          number={5}
+        />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+      {homeData?.length ? (
+        <ChartSection dataTrendding={GetdataSection(homeData, "RTChart")} />
+      ) : (
+        <div className="w-full h-[20rem] bg-gray-200 animate-pulse mt-6 rounded-lg">
+          <div className="flex flex-col items-center justify-center h-full">
+            <div className="w-[95%] h-6 bg-gray-300 rounded"></div>
+            <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+            <div className="w-[95%] h-6 bg-gray-300 rounded mt-4"></div>
+          </div>
+        </div>
+      )}
+
+      {homeData?.length ? (
+        <ListSection
+          playList={GetdataSection(homeData, "playlist")}
+          number={5}
+        />
+      ) : (
+        <SkeletonAlbumList />
+      )}
       <Footer />
     </>
   );

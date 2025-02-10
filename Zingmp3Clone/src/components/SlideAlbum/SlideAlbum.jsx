@@ -99,7 +99,7 @@ const SlideAlbum = ({ dataSlice }) => {
           );
         })}
       </div>
-      {/* {!dataSlice && (
+      {!dataSlice && (
         <div className="flex w-full gap-8 ">
           <Card className="w-1/3 space-y-5 p-4 h-[200px]" radius="lg">
             <Skeleton className="rounded-lg">
@@ -141,7 +141,7 @@ const SlideAlbum = ({ dataSlice }) => {
             </div>
           </Card>
         </div>
-      )} */}
+      )}
     </div>
   );
 };

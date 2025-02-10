@@ -70,8 +70,6 @@
   flex-shrink: 0;
 }
 
-
-
 .player-controls-left {
   display: flex;
   width: 30%;
@@ -90,10 +88,6 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.36;
-  text-overflow: clip;
-  overflow: visible;
-  display: flex;
-  align-items: center;
   color: #fff;
 }
 

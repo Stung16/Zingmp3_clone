@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
 import "./Bar_RightMusic.css";
 import ListSongBarRight from "../Songs/ListSong/ListSongBarRight";
 import SongItemBarRightNow from "../Songs/SongItem/SongItemBarRightNow";
 import { FaRegClock } from "react-icons/fa";
-import { FaPlay } from "react-icons/fa6";
 import { MdOutlineMoreHoriz } from "react-icons/md";
 import { BiSolidPlaylist } from "react-icons/bi";
 

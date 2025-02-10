@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { songSlices } from "../../stores/slices/songSlices";
 import ListTop100 from "../../components/ListTop100/ListTop100";
 import { getTop100 } from "../../services/music.services";
+import { useEffect, useState } from "react";
+import SkeletonAlbumList from "../../components/Loading/SkeletonLoading/SkeletonAlbumList";
 const { updateLoading } = songSlices.actions;
 
 const Top100 = () => {
-  const [dataChart, setDataChart] = useState({});
+  const [dataChart, setDataChart] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,7 @@ const Top100 = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <div className="flex justify-center items-center mt-24">
@@ -75,11 +76,36 @@ const Top100 = () => {
           </g>
         </svg>
       </div>
-      <ListTop100 playList={dataChart?.[0]} />
-      <ListTop100 playList={dataChart?.[1]} />
-      <ListTop100 playList={dataChart?.[2]} />
-      <ListTop100 playList={dataChart?.[3]} />
-      <ListTop100 playList={dataChart?.[4]} />
+      {dataChart?.length ? (
+        <ListTop100 playList={dataChart?.[0]} />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+
+      {dataChart?.length ? (
+        <ListTop100 playList={dataChart?.[1]} />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+
+      {dataChart?.length ? (
+        <ListTop100 playList={dataChart?.[2]} />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+
+      {dataChart?.length ? (
+        <ListTop100 playList={dataChart?.[3]} />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+
+      {dataChart?.length ? (
+        <ListTop100 playList={dataChart?.[4]} />
+      ) : (
+        <SkeletonAlbumList />
+      )}
+
       {/* <ListSection /> */}
     </div>
   );

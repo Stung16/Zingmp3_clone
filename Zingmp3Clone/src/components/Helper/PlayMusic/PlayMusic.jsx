@@ -1,4 +1,3 @@
-import React from "react";
 import "./playmucis.css";
 
 const PlayMusic = () => {

@@ -1,8 +1,7 @@
-import React from "react";
 import { Card, Skeleton } from "@nextui-org/react";
 const SkeletonAlbumList = () => {
   return (
-    <div className="mx-5 flex gap-10">
+    <div className="mx-5 flex gap-10 mt-[3rem]">
       <Card className="w-[200px] space-y-5 p-4" radius="lg">
         <Skeleton className="rounded-lg">
           <div className="h-24 rounded-lg bg-default-300"></div>

@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  isRight: false,
   status: false,
   currentSongID: JSON.parse(localStorage.getItem("audioNow")) || null,
+  currentSong: null,
+  currentAlbum: null,
   songs: {},
   isNext: JSON.parse(localStorage.getItem("isNext")) || false,
   isPrev: JSON.parse(localStorage.getItem("isPrev")) || false,
@@ -10,10 +11,11 @@ const initialState = {
   isVip: false,
   isLoading: false,
   isRepeat: JSON.parse(localStorage.getItem("isRepeat")) || false,
-  isShuffle: JSON.parse(localStorage.getItem("isShuffle")) || false,
+  isShuffle: JSON.parse(localStorage.getItem("shuffle")) || false,
   history: JSON.parse(localStorage.getItem("history")) || [],
   favourite: JSON.parse(localStorage.getItem("favourite")) || [],
   dataHome: [],
+  listSongNext: [],
 };
 export const songSlices = createSlice({
   name: "songNow",
@@ -25,6 +27,12 @@ export const songSlices = createSlice({
     updateCurrentSong: (state, action) => {
       localStorage.setItem("audioNow", JSON.stringify(action.payload));
       state.currentSongID = action.payload;
+    },
+    updateCurrentSongItem: (state, action) => {
+      state.currentSong = action.payload;
+    },
+    updateCurrentAlbumData: (state, action) => {
+      state.currentAlbum = action.payload;
     },
     getListSong: (state, action) => {
       state.songs = action.payload;
@@ -40,6 +48,9 @@ export const songSlices = createSlice({
     updateListTrend: (state, action) => {
       state.trendding = action.payload;
     },
+    updateListSongNext: (state, action) => {
+      state.listSongNext = action.payload;
+    },
     updateIsVip: (state, action) => {
       state.isVip = action.payload;
     },
@@ -51,7 +62,7 @@ export const songSlices = createSlice({
       state.isRepeat = action.payload;
     },
     updateShuffle: (state, action) => {
-      localStorage.setItem("isShuffle", JSON.stringify(action.payload));
+      localStorage.setItem("shuffle", JSON.stringify(action.payload));
       state.isShuffle = action.payload;
     },
 

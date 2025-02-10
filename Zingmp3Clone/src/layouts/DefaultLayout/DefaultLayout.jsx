@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./defaulayot.css";
 import Sidebar from "./Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
@@ -7,24 +7,34 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header/Header";
 import ControllPlay from "../../components/ControllPlay/ControllPlay";
 import { useSelector, useDispatch } from "react-redux";
-import Loading from "../../components/Loading/Loading";
 import { songSlices } from "../../stores/slices/songSlices";
-const { updateLoading, updateDataHome } = songSlices.actions;
-import Bar_RightMusic from "../../components/Bar_RightMusic/Bar_RightMusic";
+const { updateLoading, updateDataHome, updateListSongNext } =
+  songSlices.actions;
+// import Bar_RightMusic from "../../components/Bar_RightMusic/Bar_RightMusic";
 import { getHome } from "../../services/music.services";
+import { GetdataSection } from "../../utils/fn";
 
 function DefaultLayout() {
   const currentSongID = useSelector((state) => state.songValues.currentSongID);
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.songValues.isLoading);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch(updateLoading(true));
       try {
         const homeData = await getHome();
+
         if (homeData?.err === 0) {
           dispatch(updateDataHome(homeData?.data?.items));
+          dispatch(
+            updateListSongNext(
+              GetdataSection(
+                homeData?.data?.items,
+                "newReleaseChart",
+                "hNewrelease"
+              )?.items
+            )
+          );
         }
       } catch (error) {
         console.log(error);
@@ -33,10 +43,9 @@ function DefaultLayout() {
       }
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
   return (
     <main className="overflow-hidden flex flex-col h-full">
-      {isLoading && <Loading />}
       <div
         className={`w-full flex ${
           currentSongID !== null ? "isProgesbar" : "h-screen "
@@ -52,8 +61,8 @@ function DefaultLayout() {
           </div>
         </div>
       </div>
+      {currentSongID && <ControllPlay />}
       <ToastContainer autoClose={2500} />
-      {currentSongID !== null ? <ControllPlay /> : ""}
     </main>
   );
 }

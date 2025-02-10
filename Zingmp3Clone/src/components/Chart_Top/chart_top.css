@@ -73,7 +73,6 @@
   flex-shrink: 1;
   text-align: left;
   align-self: center;
-  width: 0;
 }
 .border_b .media-content .album-info {
   color: hsla(0, 0%, 100%, 0.5);

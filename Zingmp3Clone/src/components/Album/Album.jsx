@@ -1,12 +1,8 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import { songSlices } from "../../stores/slices/songSlices";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { MdOutlineMoreHoriz } from "react-icons/md";
-const { updateCurrentSong, updateNext, updatePrev, updateIsVip, checkPlay } =
-  songSlices.actions;
-
 const Album = ({ item }) => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +31,7 @@ const Album = ({ item }) => {
         </div>
       </div>
       <div className="w-full mt-3">
-        <h3 className="text-title text-[14px] leading-[19px] font-[400] pr-[14px] block">
+        <h3 className="text-title text-[14px] leading-[19px] text-left font-[400] break-words line-clamp-2">
           {item.title}
         </h3>
       </div>

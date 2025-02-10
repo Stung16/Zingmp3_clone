@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import "./chart_top.css";
 import { getTime } from "../../utils/fn";
 import { songSlices } from "../../stores/slices/songSlices";
@@ -40,7 +41,7 @@ const Chart_Top = ({ data }) => {
                 </div>
               </div>
               <div className="cart-info">
-                <div className="name-song">
+                <div className="name-song break-words line-clamp-1 pr-3">
                   <span>{arrSuggest?.[randomIndex]?.title}</span>
                 </div>
                 <div className="name-atirt">
@@ -50,7 +51,7 @@ const Chart_Top = ({ data }) => {
             </div>
             <div className="media-content">
               <div className="album-info">
-                <span className="cursor-pointer">
+                <span className="cursor-pointer break-words line-clamp-1">
                   {arrSuggest?.[randomIndex]?.album?.title}
                 </span>
               </div>
@@ -106,7 +107,7 @@ const Chart_Top = ({ data }) => {
                         </div>
                       </div>
                       <div className="cart-info">
-                        <div className="name-song">
+                        <div className="name-song break-words line-clamp-1 pr-4">
                           <span>{item?.title}</span>
                         </div>
                         <div className="name-atirt">
